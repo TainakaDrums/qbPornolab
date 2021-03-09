@@ -231,7 +231,8 @@ class pornolab(object):
 
             # Decode data and feed it to parser
             data = response.read().decode('cp1251')
-            self.feed(data.replace('<wbr>', ''))
+            data = re.sub(r'<wbr>|<b>|<\/b>', '', data)
+            self.feed(data)
 
     def search(self, what, cat='all'):
         """Search for what on the search engine."""
